@@ -26,7 +26,7 @@ namespace Api_Lab
 
             var data = await response.Content.ReadFromJsonAsync<List<SomeData>>();
             return data ?? new List<SomeData>();
-        }
+        } 
     }
      
 }
