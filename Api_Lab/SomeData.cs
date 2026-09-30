@@ -8,9 +8,6 @@ namespace Api_Lab
 {
     public class SomeData
     {
-        public string FullName { get; set; }
-        public string Inn { get; set; }
-        public string Snils { get; set; }
-        public string Email { get; set; }
+        public string Value { get; set; }
     }
 }

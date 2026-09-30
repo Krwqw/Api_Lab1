@@ -33,8 +33,7 @@
             name_znachenia = new Label();
             search_znachenia = new TextBox();
             search1 = new Button();
-            rezults = new DataGridView();
-            ((System.ComponentModel.ISupportInitialize)rezults).BeginInit();
+            lblResult = new TextBox();
             SuspendLayout();
             // 
             // type_of_data
@@ -80,20 +79,24 @@
             search1.UseVisualStyleBackColor = true;
             search1.Click += name_znachenia_Click;
             // 
-            // rezults
+            // lblResult
             // 
-            rezults.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            rezults.Location = new Point(12, 180);
-            rezults.Name = "rezults";
-            rezults.Size = new Size(732, 150);
-            rezults.TabIndex = 5;
+            lblResult.BackColor = SystemColors.ActiveCaption;
+            lblResult.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            lblResult.Location = new Point(12, 172);
+            lblResult.Multiline = true;
+            lblResult.Name = "lblResult";
+            lblResult.ReadOnly = true;
+            lblResult.ScrollBars = ScrollBars.Vertical;
+            lblResult.Size = new Size(748, 218);
+            lblResult.TabIndex = 5;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(rezults);
+            Controls.Add(lblResult);
             Controls.Add(search1);
             Controls.Add(search_znachenia);
             Controls.Add(name_znachenia);
@@ -101,7 +104,6 @@
             Controls.Add(type_of_data);
             Name = "Form1";
             Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)rezults).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -113,6 +115,6 @@
         private Label name_znachenia;
         private TextBox search_znachenia;
         private Button search1;
-        private DataGridView rezults;
+        private TextBox lblResult;
     }
 }

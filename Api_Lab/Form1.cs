@@ -1,4 +1,4 @@
-using System.Security.Cryptography.X509Certificates;
+п»їusing System.Security.Cryptography.X509Certificates;
 
 namespace Api_Lab
 {
@@ -10,57 +10,47 @@ namespace Api_Lab
 
             fall_list.Items.AddRange(new object[]
             {
-                "fullName", "inn", "snils", "email"
+                "fullName",
+                "inn", 
+                "snils", 
+                "email",
+                "identityCard"  
             });
             fall_list.SelectedIndex = 0;
         }
-
-
-
-
         private async void name_znachenia_Click(object sender, EventArgs e)
         {
-            // 1. Проверка выбора и ввода
             if (fall_list.SelectedItem == null)
             {
-                MessageBox.Show("Выберите тип данных");
-                return;
-            }
-            if (string.IsNullOrWhiteSpace(search_znachenia.Text))
-            {
-                MessageBox.Show("Введите значение");
+                MessageBox.Show("Р’С‹Р±РµСЂРёС‚Рµ С‚РёРї РґР°РЅРЅС‹С…");
                 return;
             }
 
-            string field = fall_list.SelectedItem.ToString();
-            string value = search_znachenia.Text.Trim();
-            string baseUrl = "http://prb.sylas.ru/TransferSimulator/";
+            string methodName = fall_list.SelectedItem.ToString();
+            string baseUrl = "http://192.168.1.200:4444/TransferSimulator/";
 
             try
             {
                 search1.Enabled = false;
                 var client = new ApiClient(baseUrl);
-                var results = await client.FinddAsync(field, value);
+                var result = await client.FinddAsync(methodName);
 
-                rezults.DataSource = null;
-                rezults.DataSource = results;
-
-                if (results.Count == 0)
-                {
-                    rezults.DataSource = null;
-                    rezults.DataSource = new[] { new { Сообщение = "Ничего не найдено" } }.ToList();
-                    rezults.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                }
+                if (result == null || string.IsNullOrWhiteSpace(result.Value))
+                    lblResult.Text = "РќРёС‡РµРіРѕ РЅРµ РЅР°Р№РґРµРЅРѕ";
+                else
+                    lblResult.Text = result.Value;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ошибка: " + ex.Message);
+                lblResult.Text = "РћС€РёР±РєР°: " + ex.Message;
             }
             finally
             {
                 search1.Enabled = true;
             }
         }
+
+
 
 
     }

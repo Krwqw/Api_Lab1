@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Api_Lab
@@ -17,16 +14,13 @@ namespace Api_Lab
             _adressHttp = new HttpClient { BaseAddress = new Uri(baseUrl) };
         }
 
-        public async Task<List<SomeData>> FinddAsync(string fieldName, string value)
+        public async Task<SomeData> FinddAsync(string methodName)
         {
-            var url = $"?{fieldName}={Uri.EscapeDataString(value)}";
-
-            var response = await _adressHttp.GetAsync(url);
+            var response = await _adressHttp.GetAsync(methodName);
             response.EnsureSuccessStatusCode();
 
-            var data = await response.Content.ReadFromJsonAsync<List<SomeData>>();
-            return data ?? new List<SomeData>();
-        } 
+            var data = await response.Content.ReadFromJsonAsync<SomeData>();
+            return data;
+        }
     }
-     
 }
